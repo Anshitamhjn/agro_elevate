@@ -1,0 +1,31 @@
+#include <Arduino.h>
+
+#define LED_PIN 5
+#define PWM_CHANNEL 0
+#define PWM_FREQ 5000
+#define PWM_RESOLUTION 8
+
+void setup() {
+    Serial.begin(115200);
+    ledcSetup(PWM_CHANNEL, PWM_FREQ, PWM_RESOLUTION);
+    ledcAttachPin(LED_PIN, PWM_CHANNEL);
+}
+
+void loop() {
+    int simulated_hour = 6;  // Change this to test different times
+    int brightness = 0;
+
+    if (simulated_hour >= 6 && simulated_hour < 12) {
+        brightness = map(simulated_hour, 6, 12, 0, 255);
+    } else if (simulated_hour >= 12 && simulated_hour < 16) {
+        brightness = 255;
+    } else if (simulated_hour >= 16 && simulated_hour < 18) {
+        brightness = map(simulated_hour, 16, 18, 255, 0);
+    } else {
+        brightness = 0;
+    }
+
+    ledcWrite(PWM_CHANNEL, brightness);
+    Serial.printf("Hour: %d | Brightness: %d\n", simulated_hour, brightness);
+    delay(2000);  // Simulate time change every 2 seconds
+}
