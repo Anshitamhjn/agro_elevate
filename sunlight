@@ -1,3 +1,5 @@
+//this code creates an artificial daylight, which changes the photo-intensity as the time passes
+
 #include <Arduino.h>
 
 #define LED_PIN 5
