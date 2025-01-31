@@ -1,3 +1,6 @@
+//this code detects the humidity and temperature of the chamber, and by adding the loops according to the requirements, we can regulate the conditions too, creating an artificial weather
+
+
 #include <DHT.h>
 
 // Define DHT type and pin
